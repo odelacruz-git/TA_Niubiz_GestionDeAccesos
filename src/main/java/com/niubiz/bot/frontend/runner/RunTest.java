@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 		publish = false,
 		snippets = SnippetType.CAMELCASE,
 		features={"src/main/resources/features/"}, //Ingresar el feature o carpeta de features a ejecutar
-		tags = "@boton_aceptar_popup_busqueda_codigos_02"
+		tags = "(@boton_aceptar_popup_busqueda_codigos_02) and (@comercioAdministrador)"
 	)
 
 @Test
