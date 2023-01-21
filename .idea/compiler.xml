@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="Seleniumcucumber_Gestion_Accesos" />
+        <module name="Framework_Base" />
+        <module name="Selenium-Web" />
+        <module name="Selenium-Web_Gestion_" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
