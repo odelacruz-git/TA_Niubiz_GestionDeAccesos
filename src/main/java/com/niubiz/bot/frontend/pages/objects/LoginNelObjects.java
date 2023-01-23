@@ -18,6 +18,7 @@ public class LoginNelObjects {
     public  By BTN_SI = By.id("idSIButton9");
     public  By BTN_INICIAR_SESION = By.id("idSIButton9");
     public  By BTN_SIGUIENTE = By.id("idSIButton9");
+    public By BTN_CERRAR_COOKIES = By.id("CybotCookiebotBannerCloseButtonE2E");
 
 
 }

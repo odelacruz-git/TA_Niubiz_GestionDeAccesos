@@ -321,4 +321,29 @@ public class CrearUsuariosNelSteps {
     public void elUsuarioValidaQueElSistemaMuestreHabilitadoElBotonACEPTARAlSeleccionarUnComercio() throws Throwable {
         cu_page.validaBotonAceptarHabilitadoPopUpBusquedaCodigos();
     }
+
+    @Then("el usuario valida que el sistema muestre la cantidad de codigos marcados al seleccionar el boton ACEPTAR")
+    public void elUsuarioValidaQueElSistemaMuestreLaCantidadDeCodigosMarcadosAlSeleccionarElBotonACEPTAR() throws Throwable {
+        cu_page.validaMensajeLuegoDeSeleccionarCodigos();
+    }
+
+    @And("el usuario selecciona el codigo de comercio a los que dara acceso")
+    public void elUsuarioSeleccionaElCodigoDeComercioALosQueDaraAcceso() throws Throwable {
+        cu_page.seleccionaCodigosDeAcceso();
+    }
+
+    @Then("el usuario valida que el sistema muestre el botón SELECCIONAR de color naranja")
+    public void elUsuarioValidaQueElSistemaMuestreElBotónSELECCIONARDeColorNaranja() throws Throwable {
+        cu_page.validaBotonSeleccionarColorNaranja();
+    }
+
+    @And("el usuario regresa a la sección INFORMACION DE USUARIO y modifica un campo")
+    public void elUsuarioRegresaALaSecciónINFORMACIONDEUSUARIOYModificaUnCampo() throws Throwable {
+        cu_page.retornaAlaSeccionInformacionUsuariosyModificaCampo();
+    }
+
+    @Then("el usuario valida que el sistema no bloquee el pasar a la siguiente sección")
+    public void elUsuarioValidaQueElSistemaNoBloqueeElPasarALaSiguienteSección() throws Throwable {
+        cu_page.validaExistenciaFormularioRUCSyCODIGOS();
+    }
 }

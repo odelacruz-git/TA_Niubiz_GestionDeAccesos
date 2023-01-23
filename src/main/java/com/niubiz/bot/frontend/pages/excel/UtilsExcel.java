@@ -20,6 +20,7 @@ public class UtilsExcel {
     public String PROFILE = "Profile";
     public String DESCRIPTION = "Description";
     public String ENVIROMENT = "Enviroment";
+    public String ENVIROMENT2 = "Enviroment2";
     public String USER = "User";
     public String PASSWORD = "Password";
     public String RUC = "RUC";

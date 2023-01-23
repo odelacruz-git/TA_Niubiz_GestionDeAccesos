@@ -1082,3 +1082,70 @@ Feature: FUNCIONALIDAD ADMINISTRAR USUARIOS
     Examples: data
       | N     | CP     |
       | 300   | CP300  |
+
+    ## Avance 23-01-2023
+  @acordeon_rucs_codigos_info_codigos_seleccionados
+  Scenario Outline: <N>_<CP>_Validar que al  seleccionar un comercio y darle click al botón ACEPTAR se muestre la cantidad de comercios seleccionados  en el listado de RUCs de  la pantalla CREAR USUARIO
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario selecciona el codigo a los que dara acceso
+    Then el usuario valida que el sistema muestre la cantidad de codigos marcados al seleccionar el boton ACEPTAR
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 73    | CP073  |
+    @comercioAccesoTotal
+    Examples: data
+      | N     | CP     |
+      | 187   | CP187  |
+    @comercioAccesoPersonalizado
+    Examples: data
+      | N     | CP     |
+      | 301   | CP301  |
+
+  @acordeon_rucs_codigos_boton_seleccionar
+  Scenario Outline: <N>_<CP>_Validar que al seleccionar un comercio y darle click al botón ACEPTAR se muestre el botón SELECCIONAR de color naranja
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario selecciona el codigo de comercio a los que dara acceso
+    Then el usuario valida que el sistema muestre el botón SELECCIONAR de color naranja
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 74    | CP074  |
+    @comercioAccesoTotal
+    Examples: data
+      | N     | CP     |
+      | 188   | CP188  |
+    @comercioAccesoPersonalizado
+    Examples: data
+      | N     | CP     |
+      | 302   | CP302  |
+
+  @acordeon_secciones
+  Scenario Outline: <N>_<CP>_Validar el comportamiento cuando el usuario desee cambiar un valor de una sección anterior y no deje vacío un campo
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario regresa a la sección INFORMACION DE USUARIO y modifica un campo
+    Then el usuario valida que el sistema no bloquee el pasar a la siguiente sección
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 75    | CP075  |
+    @comercioAccesoTotal
+    Examples: data
+      | N     | CP     |
+      | 189   | CP189  |
+    @comercioAccesoPersonalizado
+    Examples: data
+      | N     | CP     |
+      | 303   | CP303  |

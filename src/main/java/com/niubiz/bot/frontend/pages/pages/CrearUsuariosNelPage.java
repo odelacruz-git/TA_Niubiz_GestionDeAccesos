@@ -1090,6 +1090,82 @@ public class CrearUsuariosNelPage extends BaseClass {
         }
 
     }
+
+    public void seleccionaCodigosDeAcceso() throws Throwable {
+        String codigo = utils.getData(ue.PAGE_SHEET1, generateWord.getFila(), ue.CODIGO);
+        clickBotonSeleccionarSecciónRucsYCodigos();
+        Thread.sleep(2000);
+        waitsElement(driver, cuo.TXT_BUSQUEDA_POR_CODIGO);
+        waitsElement(driver,cuo.INPUT_BUSQUEDA_CODIGO);
+        typeText(driver,cuo.INPUT_BUSQUEDA_CODIGO,codigo);
+        Thread.sleep(2000);
+        waitsElement(driver, cuo.OPCION_LISTA_CODIGOS(codigo));
+        click(driver, cuo.OPCION_LISTA_CODIGOS(codigo));
+        Thread.sleep(2000);
+        waitsElement(driver, cuo.RESULTADO_LISTA_CODIGOS(codigo));
+        click(driver, cuo.RESULTADO_LISTA_CODIGOS(codigo));
+        Thread.sleep(2000);
+        waitsElementClickeable(driver, cuo.BTN_ACEPTAR_ENABLE);
+        click(driver,cuo.BTN_ACEPTAR_ENABLE);
+    }
+
+    public void validaMensajeLuegoDeSeleccionarCodigos() throws Throwable {
+        Thread.sleep(2000);
+        String ruc = utils.getData(ue.PAGE_SHEET1, generateWord.getFila(), ue.RUC);
+        waitsElement(driver,cuo.TXT_CODIGOS_SELECCIONADOS(ruc));
+        if (elementoExistentePresente(driver, cuo.TXT_CODIGOS_SELECCIONADOS(ruc))){
+            generateWord.setlogStep("Validación exitosa, el mensaje de la cantidad de codigos seleccionas se muestra luego de dar click en ACEPTAR");
+        }
+        else {
+            generateWord.setlogStep("Validación fallida, el mensaje de la cantidad de codigos seleccionas no se muestra luego de dar click en ACEPTAR");
+            Assert.fail("El elemento es :" + cuo.TXT_CODIGOS_SELECCIONADOS(ruc));
+        }
+
+    }
+
+    public void validaBotonSeleccionarColorNaranja() throws Throwable {
+        Thread.sleep(2000);
+        String ruc = utils.getData(ue.PAGE_SHEET1, generateWord.getFila(), ue.RUC);
+        waitsElement(driver,cuo.TXT_CODIGOS_SELECCIONADOS(ruc));
+        if (elementoExistentePresente(driver, cuo.BTN_SELECCIONAR_ENABLE(ruc)) &&
+                getValuesCss(driver,cuo.BTN_SELECCIONAR_ENABLE(ruc),"background-color").equals("rgba(255, 193, 7, 1)") &&
+                getValuesCss(driver,cuo.BTN_SELECCIONAR_ENABLE(ruc),"color").equals("rgba(33, 33, 33, 1)")){
+            generateWord.setlogStep("Validación exitosa, el botón SELECCIONAR se encuentra activo y cumple con los estilos CSS");
+        }
+        else {
+            generateWord.setlogStep("Validación fallida, el botón posiblemente esté inactivo y no cumple con los estilos CSS");
+            Assert.fail("El elemento es :" + cuo.BTN_SELECCIONAR_ENABLE(ruc));
+        }
+
+    }
+
+    public void retornaAlaSeccionInformacionUsuariosyModificaCampo() throws Throwable {
+        String codigo = utils.getData(ue.PAGE_SHEET1, generateWord.getFila(), ue.CODIGO);
+        Thread.sleep(2000);
+        waitsElement(driver,cuo.ACORDEON_INFO_USUARIO);
+        click(driver,cuo.ACORDEON_INFO_USUARIO);
+        Thread.sleep(2000);
+        waitsElement(driver, cuo.TXTBOX_NOMBRES);
+        clear(driver, cuo.TXTBOX_NOMBRES);
+        typeText(driver,cuo.TXTBOX_NOMBRES,"Prueba");
+        Thread.sleep(2000);
+        waitsElement(driver, cuo.BTN_SIGUIENTE_INFO_USUARIOS);
+        click(driver, cuo.BTN_SIGUIENTE_INFO_USUARIOS);
+        Thread.sleep(2000);
+    }
+
+    public void validaExistenciaFormularioRUCSyCODIGOS() throws Throwable {
+        Thread.sleep(2000);
+        if (elementoExistentePresente(driver, cuo.FORM_ACORDEON_RUCS_CODIGOS) && elementoExistente(driver, cuo.BTN_SIGUIENTE_RUCS_CODIGOS)){
+            generateWord.setlogStep("Validación exitosa, el botón SIGUIENTE dejo pasar a la siguiente sección RUCS Y CODIGOS luego de modificar campos en la sección INFORMACION DE USUARIO");
+        }
+        else {
+            generateWord.setlogStep("Validación fallida,  el botón SIGUIENTE no dejo pasar a la siguiente sección RUCS Y CODIGOS luego de modificar campos en la sección INFORMACION DE USUARIO");
+            Assert.fail();
+        }
+
+    }
+
 }
 
 

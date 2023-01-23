@@ -11,6 +11,7 @@ public class CrearUsuariosNelObjects {
     public By BTN_MODULOS = By.xpath("//div[@role='button'][contains(.,'MÓDULOS')]");
     public By BTN_ASIGNACION_PERFIL = By.xpath("//div[@role='button'][contains(.,'ASIGNACIÓN DE PERFIL')]");
     public By FORM_ACORDEON_INFO_USUARIOS = By.xpath("(//div[@class='el-collapse-item__wrap'])[1]");
+    public By ACORDEON_INFO_USUARIO = By.xpath("//div[@role='button'][contains(.,'INFORMACIÓN DEL USUARIO')]");
     public By FORM_ACORDEON_RUCS_CODIGOS = By.xpath("(//div[@class='el-collapse-item__wrap'])[2]");
     public By FORM_ACORDEON_MODULOS = By.xpath("(//div[@class='el-collapse-item__wrap'])[3]");
     public By FORM_ACORDEON_ASIGNACION_PERFIL = By.xpath("(//div[@class='el-collapse-item__wrap'])[2]");
@@ -65,9 +66,12 @@ public class CrearUsuariosNelObjects {
     }
     public By CHECKBOX_SELECCIONAR_TODOS = By.xpath("//span[text()='Seleccionar todos']");
     public By REGISTROS_CODIGOS_SELECCIONADOS = By.xpath("(//tr[@class='el-table__row'])");
-
     public By BTN_ACEPTAR_DISABLED = By.xpath("//button[contains(@class,'el-button ml-5 el-button--primary is-disabled')]");
-
     public By BTN_ACEPTAR_ENABLE = By.xpath("//button[contains(@class,'el-button ml-5')]");
-
+    public By TXT_CODIGOS_SELECCIONADOS (String ruc) {
+        return By.xpath("//div[@class='business'][contains(.,'"+ruc+" - RIMAC SEGUROS Y REASEGUROSTodosSeleccionar1/451 seleccionados')]");
+    }
+    public By BTN_SELECCIONAR_ENABLE (String ruc) {
+        return By.xpath("//li[contains(@id,'btnSelector_"+ruc+"')][contains(.,'Seleccionar')]");
+    }
 }

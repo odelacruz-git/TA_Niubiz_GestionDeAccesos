@@ -20,7 +20,7 @@ public class LoginNELSteps {
     public void elUsuarioSeEncuentraLogueadoALaWebDeNelConPerfilProfile() throws Throwable {
         String userName = utils.getData(ue.PAGE_SHEET1, generateWord.getFila(), ue.USER);
         String password = utils.getData(ue.PAGE_SHEET1, generateWord.getFila(), ue.PASSWORD);
-        String enviroment = utils.getData(ue.PAGE_SHEET1, generateWord.getFila(), ue.ENVIROMENT);
+        String enviroment = utils.getData(ue.PAGE_SHEET1, generateWord.getFila(), ue.ENVIROMENT2);
         String profile = utils.getData(ue.PAGE_SHEET1, generateWord.getFila(), ue.PROFILE);
         DriverFactory.getDriver().get(enviroment);
 
