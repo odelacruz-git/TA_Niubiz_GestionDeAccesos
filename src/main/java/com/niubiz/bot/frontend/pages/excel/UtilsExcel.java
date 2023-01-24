@@ -26,4 +26,6 @@ public class UtilsExcel {
     public String RUC = "RUC";
     public String CODIGO = "Code";
 
+    public String RESULTADO = "Obtained Result";
+
 }

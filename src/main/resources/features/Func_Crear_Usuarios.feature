@@ -1149,3 +1149,6 @@ Feature: FUNCIONALIDAD ADMINISTRAR USUARIOS
     Examples: data
       | N     | CP     |
       | 303   | CP303  |
+
+    ## Avance 23-01-2023
+

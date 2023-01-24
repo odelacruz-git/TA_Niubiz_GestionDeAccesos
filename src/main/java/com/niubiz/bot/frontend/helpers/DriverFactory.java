@@ -1,10 +1,10 @@
 package com.niubiz.bot.frontend.helpers;
 
+import com.niubiz.bot.frontend.utility.ConfigReader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.OutputType;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -22,12 +22,13 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
+import java.util.Properties;
 import java.util.logging.Level;
 
 public class DriverFactory {
 	private static final Logger logger = LogManager.getLogger(DriverFactory.class);
-	private static final long DELAY = 10;
+	private static ConfigReader configReader = new ConfigReader();
+	Properties prop = configReader.init_prop();;
 	public static void generarRuta(String ruta) {
 		File directorio = new File(ruta);
 		if(!directorio.exists()) {
@@ -46,7 +47,7 @@ public class DriverFactory {
 			// Setting new download directory path
 			Map<String, Object> prefs = new HashMap<String, Object>();
 			// Use File.separator as it will work on any OS
-			//generarRuta(System.getProperty("user.dir") + File.separator + "externalFiles" + File.separator + "downloadFiles");
+			generarRuta(System.getProperty("user.dir") + File.separator + "externalFiles" + File.separator + "downloadFiles");
 			prefs.put("download.default_directory",System.getProperty("user.dir") + File.separator + "externalFiles" + File.separator + "downloadFiles");
 			prefs.put("download.prompt_for_download", false);
 			prefs.put("download.extensions_to_open", "xml");
@@ -75,10 +76,17 @@ public class DriverFactory {
 			chromeOptions.setExperimentalOption("prefs", prefs);
 			chromeOptions.setCapability("goog:loggingPrefs", logPrefs);
 
-
-			//URL url = new URL("http://localhost:4444/wd/hub");
-			//tlDriver.set(new RemoteWebDriver(url,chromeOptions));
-			tlDriver.set(new ChromeDriver(chromeOptions));
+			String grid = prop.getProperty("hook.grid");
+			if(grid.equals("true")){
+				chromeOptions.addArguments("--headless");
+				URL url = new URL(prop.getProperty("hook.url")+"/wd/hub");
+				tlDriver.set(new RemoteWebDriver(url,chromeOptions));
+				Dimension dimension = new Dimension(1920, 1080);
+				getDriver().manage().window().setSize(dimension);
+			}
+			else {
+				tlDriver.set(new ChromeDriver(chromeOptions));
+			}
 		} else if (browser.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -89,8 +97,10 @@ public class DriverFactory {
 			System.out.println("Por favor, pase el valor correcto del navegador: " + browser);
 		}
 
+		long DELAY = Long.parseLong(prop.getProperty("hook.delay"));
+
 		getDriver().manage().deleteAllCookies();
-		//getDriver().manage().timeouts().implicitlyWait(Duration.ofDays(DELAY));
+		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(DELAY));
 		getDriver().manage().window().maximize();
 		return getDriver();
 

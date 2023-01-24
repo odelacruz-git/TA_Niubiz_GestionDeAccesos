@@ -53,7 +53,7 @@ public class BaseClass {
             System.out.println(ft.format(dNow) +  " [isDisplayed] - " + locator);
             return driver.findElement(locator).isDisplayed();
         }catch (NoSuchElementException we){
-            generateWord.sendDescript("Error : " +we);
+            generateWord.sendDescript("Error : " +we,false);
             return false;
         }
     }
@@ -345,7 +345,7 @@ public class BaseClass {
             js.executeScript("window.scrollBy(" + x + "," + y + ")", "");
         } catch (RuntimeException t) {
             logger.error("[LOG]-Scroll: " + t);
-            generateWord.sendDescript("Error-Scroll: " +t);
+            generateWord.sendDescript("Error-Scroll: " +t,false);
             throw t;
         }
     }
@@ -492,7 +492,7 @@ public class BaseClass {
             logger.info("Objeto "+locator+ " desapareció");
         } catch (Exception e) {
             logger.error("No desaparecio el objeto en "+ time +" segundos");
-            generateWord.sendDescript("No desaparecio el objeto en "+ time +" segundos");
+            generateWord.sendDescript("No desaparecio el objeto en "+ time +" segundos", true);
             throw e;
         }
     }
@@ -539,7 +539,7 @@ public class BaseClass {
             builder1.moveToElement(target).perform();
         } catch (Exception e) {
             logger.error("No se encontro el objeto: " + e.getMessage());
-            generateWord.sendDescript("No se encontro el objeto: " + e.getMessage());
+            generateWord.sendDescript("No se encontro el objeto: " + e.getMessage(), true);
             throw e;
         }
     }
@@ -673,7 +673,7 @@ public class BaseClass {
 */
     private void errorNoElementFound(WebDriver driver, By locator) throws IOException {
         logger.error("Error : No se encontró el elemento : " + locator);
-        generateWord.sendDescript("Error : No se encontró el elemento : " + locator);
+        generateWord.sendDescript("Error : No se encontró el elemento : " + locator,true);
     }
 /*
     public static Exception handleError(WebDriver driver, String codigo, String msg) throws Throwable {
@@ -685,17 +685,17 @@ public class BaseClass {
         try {
             if (StringUtils.isNotEmpty(url)) {
                 driver.get(url);
-                generateWord.sendDescript("Cargo correctamente la URL: '"+url+"'");
+                generateWord.sendDescript("Cargo correctamente la URL: '"+url+"'",false);
                 generateWord.sendBreak();
                 sleep(500);
             } else {
                 throw new Exception("Error al cargar la página, NO existe el parámetro URL del aplicativo ");
             }
         } catch ( NoSuchWindowException | NoSuchSessionException e ){
-            generateWord.sendDescript("[Error al cargar Browser] : Navegador se cerro inesperandamente : " + e.getMessage());
+            generateWord.sendDescript("[Error al cargar Browser] : Navegador se cerro inesperandamente : " + e.getMessage(),true);
             throw e;
         } catch ( Throwable t ) {
-            generateWord.sendDescript("[Error al cargar Browser] : " + t.getMessage());
+            generateWord.sendDescript("[Error al cargar Browser] : " + t.getMessage(),true);
             throw t;
         }
     }
