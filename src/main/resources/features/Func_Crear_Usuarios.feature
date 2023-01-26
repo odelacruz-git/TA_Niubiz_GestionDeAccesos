@@ -1152,3 +1152,25 @@ Feature: FUNCIONALIDAD ADMINISTRAR USUARIOS
 
     ## Avance 23-01-2023
 
+  @acordeon_secciones
+  Scenario Outline: <N>_<CP>_Validar el comportamiento cuando el usuario desee cambiar un valor de una sección anterior y no deje vacío un campo
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario regresa a la sección INFORMACION DE USUARIO y modifica un campo
+    Then el usuario valida que el sistema no bloquee el pasar a la siguiente sección
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 79    | CP079  |
+    @comercioAccesoTotal
+    Examples: data
+      | N     | CP     |
+      | 193   | CP193  |
+    @comercioAccesoPersonalizado
+    Examples: data
+      | N     | CP     |
+      | 307   | CP307  |
+
