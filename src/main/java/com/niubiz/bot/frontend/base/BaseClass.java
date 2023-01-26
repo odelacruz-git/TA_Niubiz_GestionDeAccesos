@@ -538,9 +538,8 @@ public class BaseClass {
             builder1 = new Actions(driver);
             builder1.moveToElement(target).perform();
         } catch (Exception e) {
-            logger.error("No se encontro el objeto: " + e.getMessage());
-            generateWord.sendDescript("No se encontro el objeto: " + e.getMessage(), true);
-            throw e;
+            generateWord.setlogStep("No se encontro el objeto: " + e.getMessage());
+            Assert.fail("No se encontro el objeto: " + e.getMessage());
         }
     }
 
@@ -874,5 +873,16 @@ public class BaseClass {
         return nromes;
     }
 
+    public Boolean validaCSSElemento(WebDriver driver, By locator, String bg, String color, String fs) throws Throwable {
+        if (getValuesCss(driver,locator,"background-color").equals(bg) &&
+                getValuesCss(driver,locator,"color").equals(color) &&
+                getValuesCss(driver,locator,"font-size").equals(fs)){
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
 
 }

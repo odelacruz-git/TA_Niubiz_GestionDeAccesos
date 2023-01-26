@@ -346,4 +346,19 @@ public class CrearUsuariosNelSteps {
     public void elUsuarioValidaQueElSistemaNoBloqueeElPasarALaSiguienteSección() throws Throwable {
         cu_page.validaExistenciaFormularioRUCSyCODIGOS();
     }
+
+    @Then("el usuario valida que el sistema muestre el tooltip 'Todos los usuarios tienen acceso a la pantalla de inicio' en la sección 'MODULOS'")
+    public void elUsuarioValidaQueElSistemaMuestreElTooltipTodosLosUsuariosTienenAccesoALaPantallaDeInicioEnLaSecciónMODULOS() throws Throwable {
+        cu_page.validaExistenciaTooltipALColocarCursorEnOpcionPaginaDeInicio();
+    }
+
+    @Then("el usuario valida que el sistema muestre el tooltip asignado en aquellos elementos con el icono 'i' en la sección 'MODULOS'")
+    public void elUsuarioValidaQueElSistemaMuestreElTooltipAsignadoEnAquellosElementosConElIconoIEnLaSecciónMODULOS() throws Throwable {
+        cu_page.validaExistenciaTooltipEnTodosLosIconosInformativosSecciónModulos();
+    }
+
+    @Then("el usuario valida que el sistema muestre que solo se encuentre marcada la opción 'Página de Inicio' en la sección 'MODULOS'")
+    public void elUsuarioValidaQueElSistemaMuestreQueSoloSeEncuentreMarcadaLaOpciónPáginaDeInicioEnLaSecciónMODULOS() throws Throwable {
+
+    }
 }

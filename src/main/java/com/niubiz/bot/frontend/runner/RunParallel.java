@@ -19,8 +19,8 @@ import io.cucumber.testng.CucumberOptions;
 		publish = false,
 		snippets = CucumberOptions.SnippetType.CAMELCASE,
 
-		features = { "src/main/resources/features/Func_Administrar_Usuarios.feature" } //Ingresar el feature o carpeta de features a ejecutar
-		,tags = "@testCase01"
+		features = { "src/main/resources/features/" } //Ingresar el feature o carpeta de features a ejecutar
+		,tags = "@seccion_modulos"
 
 )
 

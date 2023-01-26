@@ -1152,3 +1152,29 @@ Feature: FUNCIONALIDAD ADMINISTRAR USUARIOS
 
     ## Avance 23-01-2023
 
+  @seccion_modulos_01
+  Scenario Outline: <N>_<CP>_Validar que se muestre el tooltip al pasar el cursor por la opción 'Pagina de Inicio'
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    Then el usuario valida que el sistema muestre el tooltip 'Todos los usuarios tienen acceso a la pantalla de inicio' en la sección 'MODULOS'
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 79    | CP079  |
+
+  @seccion_modulos_02
+  Scenario Outline: <N>_<CP>_Validar el comportamiento al pasar el cursor sobre el icono informativo de las secciones
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    Then el usuario valida que el sistema muestre el tooltip asignado en aquellos elementos con el icono 'i' en la sección 'MODULOS'
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 80    | CP080  |
+

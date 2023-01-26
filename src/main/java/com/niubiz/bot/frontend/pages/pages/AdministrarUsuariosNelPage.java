@@ -169,6 +169,7 @@ public class AdministrarUsuariosNelPage extends BaseClass {
             waitsElementClickeable(driver, locator);
             Thread.sleep(1000);
             click(driver, locator);
+            Thread.sleep(2000);
             generateWord.setlogStep("Evento Click Exitoso - OPCIÓN: 'Crear Nuevo Usuario'");
         } catch (Exception e) {
             generateWord.setlogStep("Evento Click Fallido ");

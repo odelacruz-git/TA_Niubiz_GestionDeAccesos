@@ -896,8 +896,6 @@ public class CrearUsuariosNelPage extends BaseClass {
         if (bolExistente(driver, cuo.FORM_ACORDEON_RUCS_CODIGOS, 5)){
             waitsElement(driver, cuo.CHECKBOX_RUCS_CODIGOS(ruc));
             click(driver,cuo.CHECKBOX_RUCS_CODIGOS(ruc));
-            generateWord.sendText("Click para seleccionar un RUC");
-            generateWord.addImageToWord(driver);
         } else {
             generateWord.setlogStep("No se encuentra el elemento Acordeon de la sección RUCS y CODIGOS");
             Assert.fail();
@@ -1165,6 +1163,96 @@ public class CrearUsuariosNelPage extends BaseClass {
         }
 
     }
+
+    public void validaExistenciaTooltipALColocarCursorEnOpcionPaginaDeInicio() throws Throwable {
+        waitsElementClickeable(driver, cuo.BTN_SIGUIENTE_RUCS_CODIGOS);
+        click(driver,cuo.BTN_SIGUIENTE_RUCS_CODIGOS);
+        Thread.sleep(1000);
+        waitsElement(driver, cuo.CHECKBOX_MODULOS_PAGINA_INICIO);
+        mouseHover(driver,cuo.CHECKBOX_MODULOS_PAGINA_INICIO);
+        Thread.sleep(1000);
+        if (elementoExistente(driver, cuo.TOOLTIP_MODULOS_PAGINA_INICIO) &&
+                getValuesCss(driver,cuo.TOOLTIP_MODULOS_PAGINA_INICIO,"background-color").equals("rgba(48, 49, 51, 1)") &&
+                getValuesCss(driver,cuo.TOOLTIP_MODULOS_PAGINA_INICIO,"color").equals("rgba(255, 255, 255, 1)") &&
+                getValuesCss(driver,cuo.TOOLTIP_MODULOS_PAGINA_INICIO,"font-size").equals("12px")){
+            generateWord.setlogStep("Validación exitosa, el tooltip 'Todos los usuarios tienen acceso a la pantalla de inicio' si se muestra al pasar el cursor");
+        }
+        else {
+            generateWord.setlogStep("Validación fallida, el tooltip 'Todos los usuarios tienen acceso a la pantalla de inicio' no se muestra al pasar el cursor");
+            Assert.fail();
+        }
+    }
+
+    public void validaExistenciaTooltipEnTodosLosIconosInformativosSecciónModulos() throws Throwable {
+        waitsElementClickeable(driver, cuo.BTN_SIGUIENTE_RUCS_CODIGOS);
+        click(driver,cuo.BTN_SIGUIENTE_RUCS_CODIGOS);
+        Thread.sleep(1000);
+        waitsElement(driver, cuo.INFO_MODULOS_MIS_VENTAS);
+        mouseHover(driver,cuo.INFO_MODULOS_MIS_VENTAS);
+        Thread.sleep(1000);
+        Boolean t_mis_ventas = elementoExistente(driver,cuo.TOOLTIP_INFO_MODULOS_MIS_VENTAS);
+        generateWord.sendDescript("Screeshot: Tooltip MIS VENTAS",true);
+        generateWord.addImageToWord(driver);
+        if (t_mis_ventas && validaCSSElemento(driver,cuo.TOOLTIP_INFO_MODULOS_MIS_VENTAS,"rgba(48, 49, 51, 1)","rgba(255, 255, 255, 1)","12px")) {
+            waitsElement(driver, cuo.INFO_MODULOS_MIS_DEPOSITOS);
+            mouseHover(driver, cuo.INFO_MODULOS_MIS_DEPOSITOS);
+            Thread.sleep(1000);
+            Boolean t_mis_depositos = elementoExistente(driver, cuo.TOOLTIP_INFO_MODULOS_MIS_DEPOSITOS);
+            generateWord.sendDescript("Screenshot: Tooltip MIS DEPOSITOS",true);
+            generateWord.addImageToWord(driver);
+            if (t_mis_depositos && validaCSSElemento(driver, cuo.TOOLTIP_INFO_MODULOS_MIS_DEPOSITOS, "rgba(48, 49, 51, 1)", "rgba(255, 255, 255, 1)", "12px")) {
+                waitsElement(driver, cuo.INFO_MODULOS_MIS_CANJES);
+                mouseHover(driver, cuo.INFO_MODULOS_MIS_CANJES);
+                Thread.sleep(1000);
+                Boolean t_mis_canjes = elementoExistente(driver, cuo.TOOLTIP_INFO_MODULOS_MIS_CANJES);
+                generateWord.sendDescript("Screenshot: Tooltip MIS CANJES",true);
+                generateWord.addImageToWord(driver);
+                if (t_mis_canjes && validaCSSElemento(driver, cuo.TOOLTIP_INFO_MODULOS_MIS_CANJES, "rgba(48, 49, 51, 1)", "rgba(255, 255, 255, 1)", "12px")) {
+                    waitsElement(driver, cuo.INFO_MODULOS_COMPROBANTE_PAGO);
+                    mouseHover(driver, cuo.INFO_MODULOS_COMPROBANTE_PAGO);
+                    Thread.sleep(1000);
+                    Boolean t_comprobante_pago = elementoExistente(driver, cuo.TOOLTIP_INFO_COMPROBANTE_PAGO);
+                    generateWord.sendDescript("Screenshot: Tooltip COMPROBANTE DE PAGO",true);
+                    generateWord.addImageToWord(driver);
+                    if (t_comprobante_pago && validaCSSElemento(driver, cuo.TOOLTIP_INFO_COMPROBANTE_PAGO, "rgba(48, 49, 51, 1)", "rgba(255, 255, 255, 1)", "12px")) {
+                        waitsElement(driver, cuo.INFO_MODULOS_ADMINISTRAR_USUARIOS);
+                        mouseHover(driver, cuo.INFO_MODULOS_ADMINISTRAR_USUARIOS);
+                        Thread.sleep(1000);
+                        Boolean t_administrar_usuarios = elementoExistente(driver, cuo.TOOLTIP_INFO_ADMINISTRAR_USUARIOS);
+                        generateWord.sendDescript("Screenshot: Tooltip ADMINISTRAR USUARIOS",true);
+                        generateWord.addImageToWord(driver);
+                        Thread.sleep(1000);
+                        if (t_administrar_usuarios && validaCSSElemento(driver, cuo.TOOLTIP_INFO_ADMINISTRAR_USUARIOS, "rgba(48, 49, 51, 1)", "rgba(255, 255, 255, 1)", "12px")) {
+                            generateWord.sendDescript("Validación Exitosa, los tooltips se muestran en cada uno de los iconos de información presentes en la sección MODULOS",true);
+                        } else {
+                            generateWord.setlogStep("Validación Fallida, uno o mas tooltips NO se muestran en los iconos de información presentes en la sección MODULOS");
+                            Assert.fail();
+                        }
+                    } else {
+                        generateWord.setlogStep("Validación Fallida, uno o mas tooltips NO se muestran en los iconos de información presentes en la sección MODULOS");
+                        Assert.fail();
+                    }
+                } else {
+                    generateWord.setlogStep("Validación Fallida, uno o mas tooltips NO se muestran en los iconos de información presentes en la sección MODULOS");
+                    Assert.fail();
+                }
+            }
+            else {
+                generateWord.setlogStep("Validación Fallida, uno o mas tooltips NO se muestran en los iconos de información presentes en la sección MODULOS");
+                Assert.fail();
+            }
+        }
+        else {
+            generateWord.setlogStep("Validación Fallida, uno o mas tooltips NO se muestran en los iconos de información presentes en la sección MODULOS");
+            Assert.fail();
+        }
+
+    }
+
+    public void validaCheckBoxActivoSoloPaginaDeInicio() throws Throwable {
+
+    }
+
 
 }
 

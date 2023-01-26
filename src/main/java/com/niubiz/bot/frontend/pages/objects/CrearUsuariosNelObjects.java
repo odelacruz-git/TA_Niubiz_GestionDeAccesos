@@ -74,4 +74,17 @@ public class CrearUsuariosNelObjects {
     public By BTN_SELECCIONAR_ENABLE (String ruc) {
         return By.xpath("//li[contains(@id,'btnSelector_"+ruc+"')][contains(.,'Seleccionar')]");
     }
+    public By TOOLTIP_MODULOS_PAGINA_INICIO = By.xpath("//div[@role='tooltip'][contains(.,'Todos los usuarios tienen acceso a la pantalla de inicio')]");
+    public By CHECKBOX_MODULOS_PAGINA_INICIO = By.xpath("//span[@class='el-checkbox__label'][contains(.,'Página de Inicio')]");
+    public By INFO_MODULOS_MIS_VENTAS = By.xpath("(//i[contains(@class,'el-tooltip info')])[1]");
+    public By TOOLTIP_INFO_MODULOS_MIS_VENTAS = By.xpath("//div[@role='tooltip'][contains(.,'Accesso a la información de las ventas de los últimos 12 meses')]");
+    public By INFO_MODULOS_MIS_DEPOSITOS = By.xpath("(//i[contains(@class,'el-tooltip info')])[2]");
+    public By TOOLTIP_INFO_MODULOS_MIS_DEPOSITOS = By.xpath("//div[@role='tooltip'][contains(.,'Accesso a la información de tus depósitos de los últimos 12 meses')]");
+    public By INFO_MODULOS_MIS_CANJES = By.xpath("(//i[contains(@class,'el-tooltip info')])[3]");
+    public By TOOLTIP_INFO_MODULOS_MIS_CANJES = By.xpath("//div[@role='tooltip'][contains(.,'Acceso a la información los canjes realizados en los últimos 12 meses')]");
+    public By INFO_MODULOS_COMPROBANTE_PAGO= By.xpath("(//i[contains(@class,'el-tooltip info')])[4]");
+    public By TOOLTIP_INFO_COMPROBANTE_PAGO = By.xpath("//div[@role='tooltip'][contains(.,'El documento autorizado se genera para todos los códigos asociados al RUC.')]");
+    public By INFO_MODULOS_ADMINISTRAR_USUARIOS = By.xpath("(//i[contains(@class,'el-tooltip info')])[5]");
+    public By TOOLTIP_INFO_ADMINISTRAR_USUARIOS = By.xpath("//div[@role='tooltip'][contains(.,'Acceso a crear, editar, inactivar, activar y generar reporte de usuarios')]");
+
 }

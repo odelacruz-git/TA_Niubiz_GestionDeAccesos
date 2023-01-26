@@ -1150,27 +1150,43 @@ Feature: FUNCIONALIDAD ADMINISTRAR USUARIOS
       | N     | CP     |
       | 303   | CP303  |
 
-    ## Avance 23-01-2023
+    ## Avance 26-01-2023
 
-  @acordeon_secciones
-  Scenario Outline: <N>_<CP>_Validar el comportamiento cuando el usuario desee cambiar un valor de una sección anterior y no deje vacío un campo
+  @seccion_modulos_01
+  Scenario Outline: <N>_<CP>_Validar que se muestre el tooltip al pasar el cursor por la opción 'Pagina de Inicio'
     Given el usuario se encuentra logueado a la web de Nel
     When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
     And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
     And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
     And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
-    And el usuario regresa a la sección INFORMACION DE USUARIO y modifica un campo
-    Then el usuario valida que el sistema no bloquee el pasar a la siguiente sección
+    Then el usuario valida que el sistema muestre el tooltip 'Todos los usuarios tienen acceso a la pantalla de inicio' en la sección 'MODULOS'
     @comercioAdministrador
     Examples: data
       | N     | CP     |
       | 79    | CP079  |
-    @comercioAccesoTotal
-    Examples: data
-      | N     | CP     |
-      | 193   | CP193  |
-    @comercioAccesoPersonalizado
-    Examples: data
-      | N     | CP     |
-      | 307   | CP307  |
 
+  @seccion_modulos_02
+  Scenario Outline: <N>_<CP>_Validar el comportamiento al pasar el cursor sobre el icono informativo de las secciones
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    Then el usuario valida que el sistema muestre el tooltip asignado en aquellos elementos con el icono 'i' en la sección 'MODULOS'
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 80    | CP080  |
+
+  @seccion_modulos_03
+  Scenario Outline: <N>_<CP>_Validar que se encuentren deshabilitados las opciones en todas las secciones del modulo
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    Then el usuario valida que el sistema muestre que solo se encuentre marcada la opción 'Página de Inicio' en la sección 'MODULOS'
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 81    | CP081  |
