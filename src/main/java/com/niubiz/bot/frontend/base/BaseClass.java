@@ -58,13 +58,28 @@ public class BaseClass {
         }
     }
 
+    protected Boolean isSelected(WebDriver driver, By locator){
+        try {
+            System.out.println(ft.format(dNow) +  " [isSelected] - " + locator + " " + driver.findElement(locator).isSelected());
+            return driver.findElement(locator).isSelected();
+        }catch (NoSuchElementException we){
+            generateWord.sendDescript("Error : " +we,false);
+            return false;
+        }
+    }
+
     protected Boolean elementDisplayed(WebDriver driver, By locator){
             System.out.println(ft.format(dNow) +  " [isDisplayed] - " + locator);
             return driver.findElement(locator).isDisplayed();
     }
-    protected Boolean elementEnabled(WebDriver driver, By locator){
-        System.out.println(ft.format(dNow) +  " [isEnabled] - " + locator);
-        return driver.findElement(locator).isEnabled();
+    protected Boolean isEnabled(WebDriver driver, By locator){
+        try {
+            System.out.println(ft.format(dNow) +  " [isEnabled] - " + locator + " " + driver.findElement(locator).isEnabled());
+            return driver.findElement(locator).isEnabled();
+        }catch (NoSuchElementException we){
+            generateWord.sendDescript("Error : " +we,false);
+            return false;
+        }
     }
     protected void waitForElementNotVisible(WebDriver driver, By locator, int Seg) {
         boolean response = false;
@@ -207,7 +222,7 @@ public class BaseClass {
 
     protected String getAttribute(WebDriver driver, By locator, String attribute) throws IOException {
         try {
-            System.out.println(ft.format(dNow) +  " [GetValue] - " + locator);
+            System.out.println(ft.format(dNow) +  " [GetValue] - " + locator + " " + driver.findElement(locator).getAttribute(attribute));
             return driver.findElement(locator).getAttribute(attribute);
         }catch (RuntimeException we){
             errorNoElementFound(driver, locator);
@@ -772,7 +787,7 @@ public class BaseClass {
 
     public void waitsElement(WebDriver driver, By locator) throws Exception {
         try {
-            webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(240));
+            webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
             webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         }
         catch (Exception e) {

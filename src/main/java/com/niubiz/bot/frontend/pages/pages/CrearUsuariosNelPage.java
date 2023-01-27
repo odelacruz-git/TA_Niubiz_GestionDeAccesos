@@ -1250,9 +1250,53 @@ public class CrearUsuariosNelPage extends BaseClass {
     }
 
     public void validaCheckBoxActivoSoloPaginaDeInicio() throws Throwable {
-
+        waitsElement(driver, cuo.BTN_SIGUIENTE_RUCS_CODIGOS);
+        click(driver, cuo.BTN_SIGUIENTE_RUCS_CODIGOS);
+        Thread.sleep(1000);
+        if(!isEnabled(driver,cuo.CHECKBOX_MODULOS_PAGINA_INICIO) && !isSelected(driver,cuo.CHECKBOX_MODULOS_MIS_DEPOSITOS)
+                && !isSelected(driver,cuo.CHECKBOX_MODULOS_MIS_VENTAS) && !isSelected(driver,cuo.CHECKBOX_MODULOS_MIS_CANJES)
+                && !isSelected(driver,cuo.CHECKBOX_MODULOS_COMPROBANTE_PAGO) && !isSelected(driver,cuo.CHECKBOX_MODULOS_REPORTE_DEVOLUCIONES)
+                && !isSelected(driver,cuo.CHECKBOX_MODULOS_REGISTRAR_DEVOLUCIONES) && !isSelected(driver,cuo.CHECKBOX_MODULOS_REGISTRAR_CUENTA_BANCARIA)
+                && !isSelected(driver,cuo.CHECKBOX_MODULOS_ADMINISTRAR_USUARIOS)){
+            generateWord.sendDescript("Validación Exitosa, solo el checkbox de 'Pagina de Inicio' se encuentra seleccionada y deshabilitada en la sección MODULOS",true);
+        }
+        else {
+            generateWord.sendDescript("Validación Fallida, existe mas de 1 checkbox seleccionado en la sección MODULOS",true);
+            Assert.fail();
+        }
     }
 
+    public void marcarOpcionRegistrarDevoluciones() throws Throwable {
+        waitsElement(driver, cuo.BTN_SIGUIENTE_RUCS_CODIGOS);
+        click(driver, cuo.BTN_SIGUIENTE_RUCS_CODIGOS);
+        Thread.sleep(1000);
+        waitsElement(driver, cuo.OPCION_REGISTRAR_DEVOLUCIONES);
+        click(driver, cuo.OPCION_REGISTRAR_DEVOLUCIONES);
+    }
+
+    public void validaSiSeMuestraLaPreguntaAlMarcarRegistrarDevoluciones() throws Throwable {
+        if (elementoExistente(driver, cuo.TEXT_PREGUNTA_REGISTRO_DEVOLUCIONES) && elementoExistente(driver, cuo.RADIO_BUTTON_OPCIONES_REGISTRO_DEVOLUCIONES)){
+            generateWord.sendDescript("Validación Exitosa, se muestra la pregunta y las opciones correspondientes al marcar 'Registrar devoluciones' en la sección MODULOS",true);
+        }
+        else {
+            generateWord.sendDescript("Validación Fallida, no se muestra la pregunta y/o las opciones correspondientes al marcar 'Registrar devoluciones' en la sección MODULOS",true);
+            Assert.fail();
+        }
+    }
+
+    public void validarSolicitudMontoADevolverYPermitirSeleccionarUsuariosAprobadores() throws Throwable {
+        waitsElement(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        click(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        Thread.sleep(1000);
+        waitsElement(driver, cuo.BOTON_SELECCIONAR_USUARIOS_APROBADORES);
+        if (elementoExistente(driver, cuo.FORM_INGRESE_MONTO_DEVOLVER) && isEnabled(driver, cuo.BOTON_SELECCIONAR_USUARIOS_APROBADORES)){
+            generateWord.sendDescript("Validación Exitosa, el sistema solicita ingresar el monto a devolver y permite seleccioanr los usuarios aprobadores al registrar devoluciones ",true);
+        }
+        else {
+            generateWord.sendDescript("Validación fallida, el sistema no solicita ingresar el monto a devolver y/o no permite seleccioanr los usuarios aprobadores al registrar devoluciones ",true);
+            Assert.fail();
+        }
+    }
 
 }
 

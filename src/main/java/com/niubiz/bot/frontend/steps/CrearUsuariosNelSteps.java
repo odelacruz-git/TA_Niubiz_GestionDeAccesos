@@ -359,6 +359,22 @@ public class CrearUsuariosNelSteps {
 
     @Then("el usuario valida que el sistema muestre que solo se encuentre marcada la opción 'Página de Inicio' en la sección 'MODULOS'")
     public void elUsuarioValidaQueElSistemaMuestreQueSoloSeEncuentreMarcadaLaOpciónPáginaDeInicioEnLaSecciónMODULOS() throws Throwable {
+        cu_page.validaCheckBoxActivoSoloPaginaDeInicio();
+    }
 
+    @And("el usuario marca la opcion Registrar Devoluciones en la sección 'MODULOS'")
+    public void elUsuarioMarcaLaOpcionRegistrarDevolucionesEnLaSecciónMODULOS() throws Throwable {
+        cu_page.marcarOpcionRegistrarDevoluciones();
+    }
+
+
+    @Then("el usuario valida que el sistema muestre una pregunta y opciones SI y NO")
+    public void elUsuarioValidaQueElSistemaMuestreUnaPreguntaYOpcionesSIYNO() throws Throwable {
+        cu_page.validaSiSeMuestraLaPreguntaAlMarcarRegistrarDevoluciones();
+    }
+
+    @Then("el usuario valida que el sistema le solicite el monto máximo a devolver y permita seleccionar usuarios aprobadores")
+    public void elUsuarioValidaQueElSistemaLeSoliciteElMontoMáximoADevolverYPermitaSeleccionarUsuariosAprobadores() throws Throwable {
+        cu_page.validarSolicitudMontoADevolverYPermitirSeleccionarUsuariosAprobadores();
     }
 }

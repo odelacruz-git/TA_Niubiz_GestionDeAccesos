@@ -61,11 +61,11 @@ public class LoginNelPage extends BaseClass{
 	public void doLogin(String uss, String pwd, String prf) throws Exception {
 		logger.info("[LOG] login con: " + uss + " y " + pwd + " con perfil " + prf);
 		Thread.sleep(1000);
-		waitsElementClickeable(driver,nlo.BTN_OCULTA_ENCUESTA);
-		click(driver, nlo.BTN_OCULTA_ENCUESTA);
-		Thread.sleep(1000);
-		waitsElementClickeable(driver,nlo.BTN_CERRAR_COOKIES);
-		click(driver, nlo.BTN_CERRAR_COOKIES);
+		if(elementoExistente(driver, nlo.BTN_OCULTA_ENCUESTA) && elementoExistente(driver,nlo.BTN_CERRAR_COOKIES)){
+			//click(driver, nlo.BTN_CERRAR_COOKIES);
+			//Thread.sleep(1000);
+			click(driver, nlo.BTN_OCULTA_ENCUESTA);
+		}
 		Thread.sleep(1000);
 		waitsElement(driver, nlo.EMAIL);
 		typeText(driver, nlo.EMAIL, uss);

@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 		publish = false,
 		snippets = SnippetType.CAMELCASE,
 		features={"src/main/resources/features/"}, //Ingresar el feature o carpeta de features a ejecutar
-		tags = "@seccion_modulos_02"
+		tags = "@checkbox_registro_devoluciones_02"
 	)
 
 @Test

@@ -75,7 +75,6 @@ public class CrearUsuariosNelObjects {
         return By.xpath("//li[contains(@id,'btnSelector_"+ruc+"')][contains(.,'Seleccionar')]");
     }
     public By TOOLTIP_MODULOS_PAGINA_INICIO = By.xpath("//div[@role='tooltip'][contains(.,'Todos los usuarios tienen acceso a la pantalla de inicio')]");
-    public By CHECKBOX_MODULOS_PAGINA_INICIO = By.xpath("//span[@class='el-checkbox__label'][contains(.,'Página de Inicio')]");
     public By INFO_MODULOS_MIS_VENTAS = By.xpath("(//i[contains(@class,'el-tooltip info')])[1]");
     public By TOOLTIP_INFO_MODULOS_MIS_VENTAS = By.xpath("//div[@role='tooltip'][contains(.,'Accesso a la información de las ventas de los últimos 12 meses')]");
     public By INFO_MODULOS_MIS_DEPOSITOS = By.xpath("(//i[contains(@class,'el-tooltip info')])[2]");
@@ -86,5 +85,23 @@ public class CrearUsuariosNelObjects {
     public By TOOLTIP_INFO_COMPROBANTE_PAGO = By.xpath("//div[@role='tooltip'][contains(.,'El documento autorizado se genera para todos los códigos asociados al RUC.')]");
     public By INFO_MODULOS_ADMINISTRAR_USUARIOS = By.xpath("(//i[contains(@class,'el-tooltip info')])[5]");
     public By TOOLTIP_INFO_ADMINISTRAR_USUARIOS = By.xpath("//div[@role='tooltip'][contains(.,'Acceso a crear, editar, inactivar, activar y generar reporte de usuarios')]");
+    public By CHECKBOX_MODULOS_PAGINA_INICIO = By.xpath("(//input[@class='el-checkbox__original'])[1]");
+    public By CHECKBOX_MODULOS_MIS_VENTAS = By.xpath("(//input[@class='el-checkbox__original'])[2]");
+    public By CHECKBOX_MODULOS_MIS_DEPOSITOS = By.xpath("(//input[@class='el-checkbox__original'])[3]");
+    public By CHECKBOX_MODULOS_MIS_CANJES = By.xpath("(//input[@class='el-checkbox__original'])[4]");
+    public By CHECKBOX_MODULOS_COMPROBANTE_PAGO = By.xpath("(//input[@class='el-checkbox__original'])[5]");
+    public By CHECKBOX_MODULOS_REPORTE_DEVOLUCIONES = By.xpath("(//input[@class='el-checkbox__original'])[6]");
+    public By CHECKBOX_MODULOS_REGISTRAR_DEVOLUCIONES = By.xpath("(//input[@class='el-checkbox__original'])[7]");
+    public By CHECKBOX_MODULOS_REGISTRAR_CUENTA_BANCARIA = By.xpath("(//input[@class='el-checkbox__original'])[8]");
+    public By CHECKBOX_MODULOS_ADMINISTRAR_USUARIOS = By.xpath("(//input[@class='el-checkbox__original'])[9]");
+    public By TEXT_PREGUNTA_REGISTRO_DEVOLUCIONES = By.xpath("//span[@class='mr-4'][contains(.,'¿Desea establecer un monto máximo para las devoluciones registradas por este usuario?')]");
+    public By RADIO_BUTTON_OPCIONES_REGISTRO_DEVOLUCIONES = By.xpath("//div[@role='radiogroup'][contains(.,'SíNo')]");
+    public By OPCION_REGISTRAR_DEVOLUCIONES = By.xpath("//label[@class='el-checkbox'][contains(.,'Registrar devoluciones')]");
+    public By RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES = By.xpath("//label[@role='radio'][contains(.,'Sí')]");
+    public By FORM_INGRESE_MONTO_DEVOLVER = By.xpath("//div[@class='amount-return'][contains(.,'* Ingrese monto máximo a devolver:S/Las devoluciones que excedan el monto máximo deberán ser aprobadas por otro usuario.')]");
+    public By BOTON_SELECCIONAR_USUARIOS_APROBADORES = By.xpath("//button[@type='button'][contains(.,'Seleccionar usuarios aprobadores')]");
+
+
+
 
 }

@@ -1190,3 +1190,31 @@ Feature: FUNCIONALIDAD ADMINISTRAR USUARIOS
     Examples: data
       | N     | CP     |
       | 81    | CP081  |
+
+  @checkbox_registro_devoluciones_01
+  Scenario Outline: <N>_<CP>_Validar el comportamiento al marcar la opción 'Registrar devoluciones'
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario marca la opcion Registrar Devoluciones en la sección 'MODULOS'
+    Then el usuario valida que el sistema muestre una pregunta y opciones SI y NO
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 82    | CP082  |
+
+  @checkbox_registro_devoluciones_02
+  Scenario Outline: <N>_<CP>_Validar el comportamiento al marcar 'SI' en la pregunta 'Desea establecer un monto máximo para las devoluciones registradas por este usuario'
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario marca la opcion Registrar Devoluciones en la sección 'MODULOS'
+    Then el usuario valida que el sistema le solicite el monto máximo a devolver y permita seleccionar usuarios aprobadores
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 83    | CP083  |

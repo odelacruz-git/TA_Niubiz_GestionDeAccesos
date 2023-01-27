@@ -10,7 +10,7 @@ public class LoginNelObjects {
     public By BTN_INGRESAR = By.xpath("//button[@class='el-button el-button--fullWidth el-button--primary']");
     //public By LOADING_MAIN_PAGE = By.xpath("//div[@class='loading']//div[@class='loader']");
     public By BTN_SKIP_ENCUESTA = By.xpath("//button[@type='button'][contains(.,'Skip')]");
-    public By BTN_OCULTA_ENCUESTA = By.xpath("//span[contains(@class,'_hj-BfLwc__styles__openStateToggleIcon _hj-mtJG6__styles__surveyIcons')]");
+    public By BTN_OCULTA_ENCUESTA = By.xpath("//button[contains(@class,'_hj-kWRoL__styles__openStateToggle')]");
     //Usando Login con perfil Niubiz
     public By EMAIL2 = By.id("i0116");
     public  By PASSWORD2 = By.id("i0118");
