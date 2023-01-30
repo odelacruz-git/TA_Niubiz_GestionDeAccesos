@@ -377,4 +377,29 @@ public class CrearUsuariosNelSteps {
     public void elUsuarioValidaQueElSistemaLeSoliciteElMontoMáximoADevolverYPermitaSeleccionarUsuariosAprobadores() throws Throwable {
         cu_page.validarSolicitudMontoADevolverYPermitirSeleccionarUsuariosAprobadores();
     }
+
+    @Then("el usuario valida que el sistema muestre '0' en el placeholder hasta ingresar un caracter numérico")
+    public void elUsuarioValidaQueElSistemaMuestreEnElPlaceholderHastaIngresarUnCaracterNumérico() throws Throwable {
+        cu_page.validaPlaceholderCeroHastaIngresarCaracterNumerico();
+    }
+
+    @Then("el usuario valida que el sistema solo acepte caracteres numéricos en el input 'Ingrese monto máximo a devolver'")
+    public void elUsuarioValidaQueElSistemaSoloAcepteCaracteresNuméricosEnElInputIngreseMontoMáximoADevolver() throws Throwable {
+        cu_page.validaInputMontoMaximoDevolverAcepteSoloCaracteresNumericos();
+    }
+
+    @Then("el usuario valida que el sistema muestre el mensaje 'Ingrese un monto valido' al dejar vacío el monto a devolver")
+    public void elUsuarioValidaQueElSistemaMuestreElMensajeIngreseUnMontoValidoAlDejarVacíoElMontoADevolver() throws Throwable {
+        cu_page.validaObligatoriedadCampoIngreseMontoMaximoADevolver();
+    }
+
+    @Then("el usuario valida que el sistema muestre un PopUp para seleccionar los aprobadores")
+    public void elUsuarioValidaQueElSistemaMuestreUnPopUpParaSeleccionarLosAprobadores() throws Throwable {
+        cu_page.validarAparicionPopUpAlSeleccionarUsuariosAprobadores();
+    }
+
+    @Then("el usuario valida que el titulo 'Seleccione uno o mas usuarios' del PopUp para seleccionar los aprobadores")
+    public void elUsuarioValidaQueElTituloSeleccioneUnoOMasUsuariosDelPopUpParaSeleccionarLosAprobadores() throws Throwable {
+        cu_page.validaTituloDelPopuSeleccionarAprobadores();
+    }
 }

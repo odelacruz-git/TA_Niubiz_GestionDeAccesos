@@ -15,7 +15,7 @@ public class CrearUsuariosNelObjects {
     public By FORM_ACORDEON_RUCS_CODIGOS = By.xpath("(//div[@class='el-collapse-item__wrap'])[2]");
     public By FORM_ACORDEON_MODULOS = By.xpath("(//div[@class='el-collapse-item__wrap'])[3]");
     public By FORM_ACORDEON_ASIGNACION_PERFIL = By.xpath("(//div[@class='el-collapse-item__wrap'])[2]");
-    public By TXTBOX_CORREO_USUARIO = By.xpath("//input[contains(@id,'txtCorreo')]");
+    public By TXTBOX_CORREO_USUARIO = By.xpath("//input[contains(@maxlength,'60')]");
     public By TXTBOX_CORREO_ELECTRONICO = By.xpath("(//label[text()='Correo electrónico']/following::input)[1]");
     public By TXTBOX_NOMBRES = By.xpath("(//label[text()='Nombres']/following::input)[1]");
     public By TXTBOX_APELLIDO_PATERNO = By.xpath("(//label[text()='Apellido Paterno']/following::input)[1]");
@@ -100,7 +100,10 @@ public class CrearUsuariosNelObjects {
     public By RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES = By.xpath("//label[@role='radio'][contains(.,'Sí')]");
     public By FORM_INGRESE_MONTO_DEVOLVER = By.xpath("//div[@class='amount-return'][contains(.,'* Ingrese monto máximo a devolver:S/Las devoluciones que excedan el monto máximo deberán ser aprobadas por otro usuario.')]");
     public By BOTON_SELECCIONAR_USUARIOS_APROBADORES = By.xpath("//button[@type='button'][contains(.,'Seleccionar usuarios aprobadores')]");
-
+    public By INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES = By.xpath("//input[@placeholder='0']");
+    public By INFO_INGRESE_MONTO_VALIDO = By.xpath("//span[text()='*Ingrese un monto válido.']");
+    public By POPUP_USUARIOS_APROBADORES = By.xpath("(//div[@class='el-dialog'])[3]");
+    public By TITULO_POPUP_USUARIOS_APROBADORES = By.xpath("//div[text()='Seleccione uno o más usuarios']");
 
 
 

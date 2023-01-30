@@ -1191,7 +1191,7 @@ Feature: FUNCIONALIDAD ADMINISTRAR USUARIOS
       | N     | CP     |
       | 81    | CP081  |
 
-  @checkbox_registro_devoluciones_01
+  @registro_devoluciones_01
   Scenario Outline: <N>_<CP>_Validar el comportamiento al marcar la opción 'Registrar devoluciones'
     Given el usuario se encuentra logueado a la web de Nel
     When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
@@ -1205,7 +1205,7 @@ Feature: FUNCIONALIDAD ADMINISTRAR USUARIOS
       | N     | CP     |
       | 82    | CP082  |
 
-  @checkbox_registro_devoluciones_02
+  @registro_devoluciones_02
   Scenario Outline: <N>_<CP>_Validar el comportamiento al marcar 'SI' en la pregunta 'Desea establecer un monto máximo para las devoluciones registradas por este usuario'
     Given el usuario se encuentra logueado a la web de Nel
     When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
@@ -1218,3 +1218,74 @@ Feature: FUNCIONALIDAD ADMINISTRAR USUARIOS
     Examples: data
       | N     | CP     |
       | 83    | CP083  |
+
+    ##Avance 30-01-2023
+  @registro_devoluciones_03
+  Scenario Outline: <N>_<CP>_Validar que el placeholder de la opción 'Ingrese monto máximo a devolver:*' se muestre en '0'
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario marca la opcion Registrar Devoluciones en la sección 'MODULOS'
+    Then el usuario valida que el sistema muestre '0' en el placeholder hasta ingresar un caracter numérico
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 84    | CP084  |
+
+  @registro_devoluciones_04
+  Scenario Outline: <N>_<CP>Validar obigatoriedad del campo 'Monto máximo a devolver'
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario marca la opcion Registrar Devoluciones en la sección 'MODULOS'
+    Then el usuario valida que el sistema muestre el mensaje 'Ingrese un monto valido' al dejar vacío el monto a devolver
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 85    | CP085  |
+
+  @registro_devoluciones_05
+  Scenario Outline: <N>_<CP>_Validar que el placeholder de la opción 'Ingrese monto máximo a devolver:*' se muestre en '0'
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario marca la opcion Registrar Devoluciones en la sección 'MODULOS'
+    Then el usuario valida que el sistema solo acepte caracteres numéricos en el input 'Ingrese monto máximo a devolver'
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 86    | CP086  |
+
+  @registro_devoluciones_06
+  Scenario Outline: <N>_<CP>_Validar el comportamiento de la plataforma al seleccionar el botón  'SELECCIONAR USUARIOS APROBADORES'
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario marca la opcion Registrar Devoluciones en la sección 'MODULOS'
+    Then el usuario valida que el sistema muestre un PopUp para seleccionar los aprobadores
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 87    | CP087  |
+
+  @registro_devoluciones_07
+  Scenario Outline: <N>_<CP>_Validar el texto cabecera que se muestra en el PopUp para Selecionar aprobadores
+    Given el usuario se encuentra logueado a la web de Nel
+    When el usuario ubica los tres puntos e ingresa a la opción 'Administrar usuarios'
+    And el usuario ingresa a la opción 'CREAR NUEVO USUARIO'
+    And el usuario llena los datos correctamente de la sección 'INFORMACION DE USUARIO'
+    And el usuario selecciona un RUC de la sección 'RUCS Y CODIGOS'
+    And el usuario marca la opcion Registrar Devoluciones en la sección 'MODULOS'
+    Then el usuario valida que el titulo 'Seleccione uno o mas usuarios' del PopUp para seleccionar los aprobadores
+    @comercioAdministrador
+    Examples: data
+      | N     | CP     |
+      | 88    | CP088  |

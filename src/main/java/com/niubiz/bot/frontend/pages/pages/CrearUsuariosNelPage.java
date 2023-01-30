@@ -678,7 +678,7 @@ public class CrearUsuariosNelPage extends BaseClass {
     }
 
     public void llenaCamposInfoUsuarioPerfilComercio() throws Exception {
-        waitsElementPresence(driver, cuo.TXTBOX_CORREO_USUARIO);
+        waitsElement(driver, cuo.TXTBOX_CORREO_USUARIO);
         typeText(driver, cuo.TXTBOX_CORREO_USUARIO, "test@niubiz.com");
         Thread.sleep(500);
         waitsElement(driver, cuo.TXTBOX_NOMBRES);
@@ -1298,6 +1298,136 @@ public class CrearUsuariosNelPage extends BaseClass {
         }
     }
 
+    public void validaPlaceholderCeroHastaIngresarCaracterNumerico() throws Throwable {
+        waitsElement(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        click(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        Thread.sleep(1000);
+        waitsElement(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES);
+        String ph= getAttribute(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES,"placeholder");
+        println(ph);
+        generateWord.sendDescript("El placeholder '0', se muestra en pantalla",true);
+        generateWord.addImageToWord(driver);
+        Thread.sleep(1500);
+        if (elementoExistente(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES)){
+            typeText(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES, "5");
+            generateWord.sendDescript("Validación Exitosa, el sistema dejó de mostrar 0 en el placeholder hasta que se ingresó un caracter numérico",true);
+        }
+        else {
+            generateWord.sendDescript("Validación fallida,  el sistema sigue mostrando 0 en el placeholder",true);
+            Assert.fail();
+        }
+    }
+
+    public void validaObligatoriedadCampoIngreseMontoMaximoADevolver() throws Throwable {
+        waitsElement(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        click(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        Thread.sleep(1000);
+        waitsElement(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES);
+        String ph= getAttribute(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES,"placeholder");
+        println(ph);
+        Thread.sleep(1500);
+        if (elementoExistente(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES)){
+            waitsElementClickeable(driver, cuo.BTN_SIGUIENTE_MODULOS);
+            click(driver, cuo.BTN_SIGUIENTE_MODULOS);
+            Thread.sleep(1000);
+            if (elementoExistente(driver, cuo.INFO_INGRESE_MONTO_VALIDO)){
+                generateWord.sendDescript("Validación Exitosa, se deja el campo vacío y el sistema pide ingresar un monto válido",true);
+            }
+            else {
+                generateWord.sendDescript("Validación fallida, se deja el campo vacío pero el sistema deja pasar a la siguiente sección",true);
+                Assert.fail();
+            }
+        }
+        else {
+            Assert.fail("No se encuentra el Input para ingresar el monto máximo a devolver");
+        }
+    }
+    public void validaInputMontoMaximoDevolverAcepteSoloCaracteresNumericos() throws Throwable {
+        waitsElement(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        click(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        Thread.sleep(1000);
+        waitsElement(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES);
+        String ph= getAttribute(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES,"placeholder");
+        println(ph);
+        Thread.sleep(1500);
+        if (elementoExistente(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES)){
+            typeText(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES, "test");
+            generateWord.sendDescript("Se ingresan caracteres no numéricos",true);
+            generateWord.addImageToWord(driver);
+            waitsElementClickeable(driver, cuo.BTN_SIGUIENTE_MODULOS);
+            click(driver, cuo.BTN_SIGUIENTE_MODULOS);
+            Thread.sleep(1000);
+            if (elementoExistente(driver, cuo.INFO_INGRESE_MONTO_VALIDO)){
+                generateWord.sendDescript("Validación Exitosa, el sistema permite ingresar solo caracteres numéricos",true);
+            }
+            else {
+                generateWord.sendDescript("Validación fallida,  el sistema permite ingresar caracteres distintos a numericos",true);
+                Assert.fail();
+            }
+        }
+        else {
+            Assert.fail("No se encuentra el Input para ingresar el monto máximo a devolver");
+        }
+    }
+
+    public void validarAparicionPopUpAlSeleccionarUsuariosAprobadores() throws Throwable {
+        waitsElement(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        click(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        Thread.sleep(1000);
+        waitsElement(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES);
+        String ph= getAttribute(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES,"placeholder");
+        println(ph);
+        Thread.sleep(1500);
+        if (elementoExistente(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES)){
+            typeText(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES, "200");
+            generateWord.sendDescript("Se ingresan caracteres numéricos",true);
+            generateWord.addImageToWord(driver);
+            waitsElementClickeable(driver, cuo.BOTON_SELECCIONAR_USUARIOS_APROBADORES);
+            click(driver, cuo.BOTON_SELECCIONAR_USUARIOS_APROBADORES);
+            Thread.sleep(1000);
+            if (elementoExistente(driver, cuo.POPUP_USUARIOS_APROBADORES)){
+                generateWord.sendDescript("Validación Exitosa, el sistema muestra el PopUp para seleccioanr a los usuarios aprobadores",true);
+            }
+            else {
+                generateWord.sendDescript("Validación fallida, el sistema no muestra el PopUp para seleccioanr a los usuarios aprobadores",true);
+                Assert.fail();
+            }
+        }
+        else {
+            Assert.fail("No se encuentra el Input para ingresar el monto máximo a devolver");
+        }
+    }
+
+    public void validaTituloDelPopuSeleccionarAprobadores() throws Throwable {
+        waitsElement(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        click(driver, cuo.RADIO_BUTTON_SI_REGISTRAR_DEVOLUCIONES);
+        Thread.sleep(1000);
+        waitsElement(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES);
+        String ph= getAttribute(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES,"placeholder");
+        println(ph);
+        Thread.sleep(1500);
+        if (elementoExistente(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES)){
+            typeText(driver, cuo.INPUT_PLACEHOLDER_REGISTRAR_DEVOLUCIONES, "200");
+            generateWord.sendDescript("Se ingresan caracteres numéricos",true);
+            generateWord.addImageToWord(driver);
+            waitsElementClickeable(driver, cuo.BOTON_SELECCIONAR_USUARIOS_APROBADORES);
+            click(driver, cuo.BOTON_SELECCIONAR_USUARIOS_APROBADORES);
+            Thread.sleep(1000);
+            if (elementoExistente(driver, cuo.TITULO_POPUP_USUARIOS_APROBADORES) &&
+                    getValuesCss(driver, cuo.TITULO_POPUP_USUARIOS_APROBADORES, "font-size").equals("22px") &&
+                    getValuesCss(driver, cuo.TITULO_POPUP_USUARIOS_APROBADORES, "color").equals("rgba(3, 169, 244, 1)") &&
+                    getValuesCss(driver, cuo.TITULO_POPUP_USUARIOS_APROBADORES, "font-family").equals("font-bold")){
+                generateWord.sendDescript("Validación Exitosa, el sistema muestra el título del PopUp 'Seleccione uno o más usuarios'",true);
+            }
+            else {
+                generateWord.sendDescript("Validación fallida, el sistema no muestra el título del PopUp 'Seleccione uno o más usuarios'",true);
+                Assert.fail();
+            }
+        }
+        else {
+            Assert.fail("No se encuentra el Input para ingresar el monto máximo a devolver");
+        }
+    }
 }
 
 
